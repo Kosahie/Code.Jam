@@ -5,6 +5,11 @@ public class Node{
     private String body;
     private List<Action> action;
 
+    public Node(String body, List<Action> action) {
+        this.body = body;
+        this.action = action;
+    }
+
     public String getBody() {
         return body;
     }

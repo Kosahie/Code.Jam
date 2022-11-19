@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class main {
 
@@ -6,8 +7,13 @@ public class main {
         createStory();
     }
 
-    public void createStory(){
-        System.out.println("Start of create story");
-        Node initNode = new Node();
+    public static void createStory(){
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter the First initial story");
+        String str = sc.nextLine();
+        Node initNode = new Node(str, null);
+
+
     }
+
 }
