@@ -1,0 +1,19 @@
+
+Boredom, Loneliness, and Feeling Unproductive while Driving 😞
+
+⚡ Problem
+	Carriers are regularly faced with long trips away from home and away from loved ones. They may be bored or lonely, or they may feel unproductive while on the road.
+
+🎯 Ideal Goal
+	Minimize their loneliness and boredom, or increase their productivity while driving.
+
+    Carriers must follow driving laws, so they are not allowed to use their phones while driving. Your solution must be hands-free and must not distract the driver.
+
+Staying Awake while Driving 💤
+
+⚡ Problem
+	Carriers drive large trucks for several hours straight, and if they are not well rested, they can experience fatigue and sleepiness on the road. Drowsiness while driving is hazardous for carriers and surrounding drivers. Keeping carriers awake and alert could save lives.
+
+🎯 Ideal Goal
+	Ensure carriers stay awake while driving.
+
