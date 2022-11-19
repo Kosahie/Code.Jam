@@ -6,6 +6,8 @@ public class Node {
 	private String body;
 	private List<Action> actions;
 
+	// recursive: this method reads the node, provides the actions possible and then
+	// goes to the next node depending on what the user chose
 	public void readNode() {
 
 		// read text
@@ -27,13 +29,15 @@ public class Node {
 			// Determine which action was chosen
 			if (!actions.contains(chosenAction))
 				break;
-			
+
 			// ask again if the answer does not match one of the possible actions
 			System.out.println("Error: please choose one of the listed actions.");
 		}
-		
-		for (Action a : actions) if (a.equals(chosenAction)) a.getNode().readNode();
-		
+
+		for (Action a : actions)
+			if (a.getBody().equals(chosenAction))
+				a.getNode().readNode();
+
 	}
 
 	public String getBody() {

@@ -8,7 +8,7 @@ public class Action {
         this.body = body;
         this.node = node;
     }
-
+    
     public String getBody() {
         return body;
     }
@@ -24,4 +24,9 @@ public class Action {
     public void setNode(Node node) {
         this.node = node;
     }
+
+    @Override
+	public boolean equals(Object possibleAction) {
+		return this.body.equals(possibleAction);
+	}
 }
