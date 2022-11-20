@@ -5,10 +5,8 @@ var root         = document.documentElement,
     lineInput    = document.querySelector('#line-width'),
     gutterInput  = document.querySelector('#gutter'),
     alertRoot    = document.querySelector('[data-js="deleteNode"] .root'),
-    alertConfirm = document.querySelector('[data-js="deleteNode"] .confirm'),
-    // Used for naming new nodes
-    nodeNames    = ["Dolor", "Amet", "Consectetur", "Adipiscing", "Elit", "Nunc", "Sagittis", "Pretium", "Convallis", "Curabitur", "Turpis", "Velit", "Vitae", "Rutrum",  "Sapien", "Orci", "Tempor", "Elementum",  "Risus", "Etiam", "Ante", "Hendrerit", "Malesuada", "Donec", "Porttitor", "Eget", "Libero", "Pharetra", "Aliquam", "Mattis", "Massa", "Porta", "Morbi", "Augue", "Lectus", "Tellus", "Facilisis", "Tincidunt", "Suspendisse", "Eros", "Magna", "Consequat", "Sollicitudin", "Vestibulum", "Egestas", "Quis", "Lacus", "Molestie",  "Scelerisque", "Nullam", "Tortor", "Aenean", "Pulvinar", "Odio", "Placerat", "Fringilla", "Neque"];
-
+    alertConfirm = document.querySelector('[data-js="deleteNode"] .confirm');
+    
 var selectedNodeAction;
 var selectedNodeStory;
 
@@ -27,6 +25,7 @@ document.addEventListener('click', function (e) {
     else if (clickType === 'addChild')       addChild();
     else if (clickType === 'addStory')       addStory();
     else if (clickType === 'addAction')      addAction();
+    else if (clickType === 'save')           save();
   } else {
     // User has clicked outside of a node
     deselectNodes();
@@ -84,6 +83,8 @@ function selectNode(e) {
     clicker.classList.add('selected');
     showToolbar();   
     showStory();
+    selectedNodeAction.value = document.getElementById("action").value;
+    selectedNodeStory.value = document.getElementById("story").value;
   }
 }
 
@@ -122,9 +123,16 @@ function showStory() {
   textBar.removeAttribute('aria-hidden');
   textBar.classList.add('show');
   var chosenChild = document.querySelector('.tree .selected');
-  document.getElementById("story").value = chosenChild.value;
+  if(!chosenChild.querySelector('input')){
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.className = "input"; // set the CSS class
+    chosenChild.appendChild(input); // put it into the DOM
+  }
+  document.getElementById("story").value = chosenChild.querySelector('input').value;
   document.getElementById("action").value = chosenChild.value;
-  selectedNode = chosenChild;
+  selectedNodeAction = chosenChild;
+  selectedNodeStory = chosenChild.querySelector('input');
 }
 
 function hideToolbar() {
@@ -135,8 +143,6 @@ function hideToolbar() {
 function hideStory() {
   textBar.setAttribute('aria-hidden','true');
   textBar.classList.remove('show');
-  selectedNode.value = document.getElementById("story").value;
-  selectedNode.value = document.getElementById("action").value;
 }
 
 // Moves the sibling to the left
@@ -203,7 +209,7 @@ function addChild() {
     var chosenNode = document.querySelector('.tree .selected').parentNode,
         listItem = document.createElement('li');
     listItem.innerHTML = '<button type="button" aria-pressed="false" data-js="node" contenteditable="true">' +
-      nodeNames[Math.round(Math.random() * (nodeNames.length - 1))] + '</button>';
+      "Enter a title" + '</button>';
     // The current node already has kids
     if (chosenNode.querySelector('ul')) {
       var chosenKids = chosenNode.querySelector('ul');
@@ -234,11 +240,7 @@ function insertTextAtCursor(text) {
   }
 }
 
-function addStory(){
-  var chosenChild = document.querySelector('.tree .selected');
-  chosenChild.pa
-}
-
-function addAction(){
-
+function save(){
+  selectedNodeAction.value = document.getElementById("action").value;
+  selectedNodeStory.value = document.getElementById("story").value;
 }
