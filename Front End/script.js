@@ -1,8 +1,7 @@
+// Adapted code from https://codepen.io/ross-angus/pen/VwLWqdL
 var root         = document.documentElement,
     toolBar      = document.querySelector('[role="toolbar"]'),
     textBar      = document.querySelector('[role="story"]'),
-    colorInput   = document.querySelector('#line-color'),
-    lineInput    = document.querySelector('#line-width'),
     gutterInput  = document.querySelector('#gutter'),
     alertRoot    = document.querySelector('[data-js="deleteNode"] .root'),
     alertConfirm = document.querySelector('[data-js="deleteNode"] .confirm');
@@ -18,9 +17,7 @@ document.addEventListener('click', function (e) {
     selectNode(e);
   } else if (clickType !== '' && clickType !== null) {
     // Buttons within the toolbar, at the top of the page
-    if      (clickType === 'promoteSibling') promoteSibling();
-    else if (clickType === 'demoteSibling')  demoteSibling();
-    else if (clickType === 'editName')       editName();
+    if (clickType === 'editName')            editName();
     else if (clickType === 'deleteNode')     deleteNode(e);
     else if (clickType === 'addChild')       addChild();
     else if (clickType === 'addStory')       addStory();
@@ -34,21 +31,6 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// Customise views events
-colorInput.addEventListener('change', lineColor);
-lineInput.addEventListener('change', lineWidth);
-gutterInput.addEventListener('change', gutterWidth);
-
-function lineColor(e) {
-  root.style.setProperty('--line-color', e.target.value);
-}
-function lineWidth(e) {
-  root.style.setProperty('--line-width', (e.target.value / 10) + 'em');
-}
-function gutterWidth(e) {
-  root.style.setProperty('--gutter', (e.target.value / 10) + 'em');
-}
-
 // Allows the user to reorder the tree with the keyboard
 root.addEventListener('keydown', function (e) {
   var keyPress;
@@ -59,12 +41,6 @@ root.addEventListener('keydown', function (e) {
   if (e.target.getAttribute('contenteditable')) {
     if (keyPress === ' ' || keyPress === '32') {
       insertTextAtCursor(' ');
-    }
-  } else {
-    if (keyPress === 'ArrowRight' || keyPress === '37') {
-      demoteSibling();
-    } else if (keyPress === 'ArrowLeft' || keyPress === '39') {
-      promoteSibling();
     }
   }
   // This is useful whether the user is editing the button or not
@@ -143,30 +119,6 @@ function hideToolbar() {
 function hideStory() {
   textBar.setAttribute('aria-hidden','true');
   textBar.classList.remove('show');
-}
-
-// Moves the sibling to the left
-function promoteSibling() {
-  if (document.querySelector('.tree .selected')) {
-    var favouriteChild = document.querySelector('.tree .selected').parentNode,
-        elderChild = favouriteChild.previousElementSibling;
-    // Does this selected element have anywhere to go?
-    if (elderChild) {
-      favouriteChild.parentNode.insertBefore(favouriteChild,elderChild);
-    }    
-  }
-}
-
-// Moves the sibling to the right
-function demoteSibling() {
-  if (document.querySelector('.tree .selected')) {
-    var chosenChild = document.querySelector('.tree .selected').parentNode,
-        youngerChild = chosenChild.nextElementSibling;
-    // Does this selected element have anywhere to go?
-    if (youngerChild) {
-      chosenChild.parentNode.insertBefore(youngerChild,chosenChild);
-    }    
-  }
 }
 
 // Allows the user to rename existing nodes
