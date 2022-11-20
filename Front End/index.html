@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Dynamic tree view</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<p role="toolbar" aria-label="Node tools" aria-hidden="true" class="toolbar">
+  <button type="button" data-js="promoteSibling">&laquo; Move left</button>
+  <button type="button" data-js="demoteSibling">Move right &raquo;</button>
+  <button type="button" data-js="addChild">+ Add new</button>
+  <button type="button" data-js="deleteNode">
+    &times; Delete
+    <ins role="alert" aria-hidden="true" class="confirm" aria-label="Please confirm deletion">Are you sure? (press again to continue)</ins>
+    <ins role="alert" aria-hidden="true" class="root" aria-label="You can't delete root">You can't delete the root node</ins>
+  </button>
+  <button type="button" data-js="editName">✎ Edit name</button>
+</p>
+
+<p role="story" aria-label="Add story" aria-hidden="true" class="story">
+  <textarea data-js="action" id="action" name="action" rows="4" cols="50" placeholder="Enter the action here..."></textarea>
+  <textarea data-js="story" id="story" name="story" rows="4" cols="50" placeholder="Enter the story here..."></textarea>
+</p>
+
+<details>
+  <summary>Customise your tree view</summary>
+  <div class="grid">
+    <p><label for="line-color">Line colour</label> <input type="color" id="line-color" name="line-color" value="#666"></p>
+    <p><label for="line-width">Line width</label> <input type="range" id="line-width" name="line-width"  value="1" min="1" max="10"></p>
+    <p><label for="gutter">Gutters</label> <input type="range" id="gutter" name="gutter" value="5" min="1" max="10"></p>
+  </div>
+</details>
+  
+<ul class="tree">
+  <li>
+    <button type="button" aria-pressed="false" data-js="node">Home</button>
+  </li>
+</ul>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
