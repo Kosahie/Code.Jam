@@ -6,7 +6,7 @@ public class Story {
 	
 	public void read() {
 		
-		System.out.print("Now starting: " + title);
+		System.out.println("Now starting: " + title);
 		
 		start.readNode();
 		
