@@ -12,7 +12,7 @@ public class Node {
 	public Node() {
 		this.actions = new ArrayList<>();
 	}
-	
+
 	// getters and setters
 	public List<Action> getActions() {
 		return actions;
@@ -21,17 +21,18 @@ public class Node {
 	public void setActions(List<Action> actions) {
 		this.actions = actions;
 	}
-	
+
 	public void addAction(Action a) {
 		this.actions.add(a);
 	}
-	
+
 	public Action removeAction(Action a) {
-		if (!this.actions.contains(a)) throw new NullPointerException("Action not found.");
+		if (!this.actions.contains(a))
+			throw new NullPointerException("Action not found.");
 		this.actions.remove(a);
 		return a;
 	}
-	
+
 	public String getBody() {
 		return body;
 	}
@@ -55,33 +56,35 @@ public class Node {
 
 		// if not, read the possible actions
 		else {
-			
+
 			// set up input prompt
 			String prompt = "Do you...";
 			for (Action action : this.actions)
 				prompt = prompt + " " + action + "?";
 
 			// get user to selection action
-			String chosenAction = "";
-			while (true) {
+			Action chosenAction = new Action();
+			boolean found = false;
+			while (!found) {
 				// ask user what action they will take
 				Scanner myObj = new Scanner(System.in);
 				System.out.println(prompt);
-				chosenAction = myObj.nextLine(); // Read user input
+				String userText = myObj.nextLine(); // Read user input
+				userText = userText.toLowerCase();
 
-				// Determine which action was chosen
-				final String checker = chosenAction;
-				if (actions.stream().anyMatch(a -> a.getBody().equals(checker)))
-					break;
-
+				// Determine which action was chosen by checking action identifiers
+				for (Action a : actions) {
+					if (a.getIdentifiers().contains(userText)) {
+						chosenAction = a;
+						found = true;
+						break;
+					}
+				}
 				// ask again if the answer does not match one of the possible actions
-				System.out.println("Error: please choose one of the listed actions.");
+				if (!found) System.out.println("Error: please choose one of the listed actions.");
 			}
-
-			for (Action a : actions)
-				if (a.getBody().equals(chosenAction))
-					a.getNode().readNode();
-
+			// read next node
+			chosenAction.getNode().readNode();
 		}
 	}
 

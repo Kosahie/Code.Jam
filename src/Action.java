@@ -1,15 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Action {
 
     private String body;
     private Node node;
+    private List<String> identifiers;
 
-    public Action(String body, Node node) {
+    public List<String> getIdentifiers() {
+		return identifiers;
+	}
+
+	public void setIdentifiers(List<String> identifiers) {
+		this.identifiers = identifiers;
+	}
+	
+	public void addIdentifier(String id) {
+		this.identifiers.add(id);
+	}
+
+	public Action(String body, Node node) {
         this.body = body;
         this.node = node;
+    	this.identifiers = new ArrayList<>();
+        this.identifiers.add(body);
     }
     
-    public String getBody() {
+	public Action(String body, Node node, List<String> identifiers) {
+        this.body = body;
+        this.node = node;
+    	this.identifiers = new ArrayList<>();
+    	for (String i : identifiers) this.addIdentifier(i);
+        this.addIdentifier(body);
+    }
+	
+    public Action() {
+		// TODO Auto-generated constructor stub
+    	this.identifiers = new ArrayList<>();
+	}
+
+	public String getBody() {
         return body;
     }
 

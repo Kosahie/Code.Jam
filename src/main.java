@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 
 public class main {
 
@@ -57,10 +59,10 @@ public class main {
 		nothingWithRing.setBody("You feel a light breeze in the distance.");
 		Node escape = new Node();
 		escape.setBody(
-				"You find a path that leads you out of the dark cave into a dim, large cavern. You see the exit, but there are goblins everywhere! Luckily, they do not see you as escape. Congratulations! You rejoin your group and continue on your adventure.");
+				"You find a path that leads you out of the dark cave into a dim, large cavern. \r\nYou see the exit, but there are goblins everywhere! Luckily, they do not see you as escape. \r\nCongratulations! You rejoin your group and continue on your adventure.");
 		Node falseEscape = new Node();
 		falseEscape.setBody(
-				"You find a path that leads you out of the dark cave into a dim, large cavern. You see the exit, but there are goblins everywhere! One of them captures you as you try to escape.");
+				"You find a path that leads you out of the dark cave into a dim, large cavern. \r\nYou see the exit, but there are goblins everywhere! One of them captures you as you try to escape.");
 		Node golumn = new Node();
 		golumn.setBody(
 				"\"It wants to know our name, my precious. But what is it?\" The creature is getting very close. \"Is it tasty? Is it scrumptious?\"");
@@ -89,31 +91,31 @@ public class main {
 				+ "Ends life, kills laughter.\"");
 
 		// make and add actions
-		Action look = new Action("look around", surroundings);
-		Action feel = new Action("wave around your arms", ring);
-		Action walk = new Action("walk forward", water);
-		Action walkFurther = new Action("walk forward", death);
-		Action leap = new Action("leap back", noise);
-		Action standNoRing = new Action("do nothing", nothingNoRing);
-		Action standWithRing = new Action("do nothing", nothingWithRing);
-		Action putAway = new Action("put the ring in your pocket", pocket);
-		Action putOn = new Action("put on the ring", wearRing);
-		Action takeOff = new Action("take off the ring", pocket);
-		Action demand = new Action("ask the creature's name", golumn);
-		Action followNoRing = new Action("follow the breeze", falseEscape);
-		Action followWithRing = new Action("follow the breeze", escape);
-		Action insult = new Action("insult him", death);
-		Action stall = new Action("stall", stalling);
-		Action correct1 = new Action("answer right", answered2);
-		Action correct2 = new Action("answer right", answered3);
-		Action correct3 = new Action("answer right", death);
-		Action ask1 = new Action("ask a riddle", riddle2);
-		Action ask2 = new Action("ask a riddle", riddle3);
-		Action ask3 = new Action("ask a riddle", death);
-		Action incorrect = new Action("answer wrong", death);
-		Action runNoRing = new Action("run away", falseEscape);
-		Action runGolumnClose = new Action("run away", death);
-		Action runWithRing = new Action("run away", escape);
+		Action look = new Action("look around", surroundings, Arrays.asList("look"));
+		Action feel = new Action("wave around your arms", ring, Arrays.asList("wave arms","wave my arms","wave"));
+		Action walk = new Action("walk forward", water,Arrays.asList("walk","go forward"));
+		Action walkFurther = new Action("walk forward", death,Arrays.asList("walk","go forward"));
+		Action leap = new Action("leap back", noise,Arrays.asList("leap","jump back"));
+		Action standNoRing = new Action("do nothing", nothingNoRing,Arrays.asList("freeze","stand still","nothing"));
+		Action standWithRing = new Action("do nothing", nothingWithRing,Arrays.asList("freeze","stand still","nothing"));
+		Action putAway = new Action("put the ring in your pocket", pocket,Arrays.asList("pocket","put ring in pocket","put the ring in my pocket"));
+		Action putOn = new Action("put on the ring", wearRing,Arrays.asList("put on ring","put on","wear ring"));
+		Action takeOff = new Action("take off the ring", pocket,Arrays.asList("take off ring","take off","take ring off"));
+		Action demand = new Action("ask the creature's name", golumn,Arrays.asList("ask","ask name","name"));
+		Action followNoRing = new Action("follow the breeze", falseEscape,Arrays.asList("follow","follow breeze","breeze"));
+		Action followWithRing = new Action("follow the breeze", escape,Arrays.asList("follow","follow breeze","breeze"));
+		Action insult = new Action("insult him", death,Arrays.asList("insult"));
+		Action stall = new Action("stall", stalling,Arrays.asList("stall him","stall it"));
+		Action correct1 = new Action("answer right", answered2,Arrays.asList("right","correct"));
+		Action correct2 = new Action("answer right", answered3,Arrays.asList("right","correct"));
+		Action correct3 = new Action("answer right", death,Arrays.asList("right","correct"));
+		Action ask1 = new Action("ask a riddle", riddle2,Arrays.asList("ask","riddle"));
+		Action ask2 = new Action("ask a riddle", riddle3,Arrays.asList("ask","riddle"));
+		Action ask3 = new Action("ask a riddle", death,Arrays.asList("ask","riddle"));
+		Action incorrect = new Action("answer wrong", death,Arrays.asList("wrong","incorrect"));
+		Action runNoRing = new Action("run away", falseEscape,Arrays.asList("run","flee"));
+		Action runGolumnClose = new Action("run away", death,Arrays.asList("run","flee"));
+		Action runWithRing = new Action("run away", escape,Arrays.asList("run","flee"));
 		start.addAction(look);
 		start.addAction(feel);
 		start.addAction(walk);
@@ -125,11 +127,10 @@ public class main {
 		noise.addAction(insult);
 		pocket.addAction(putOn);
 		pocket.addAction(walk);
-		pocket.addAction(standWithRing);
+		pocket.addAction(standNoRing);
 		ring.addAction(putAway);
 		ring.addAction(putOn);
-		pocket.addAction(walk);
-		ring.addAction(standWithRing);
+		ring.addAction(standNoRing);
 		nothingNoRing.addAction(followNoRing);
 		nothingNoRing.addAction(feel);
 		nothingNoRing.addAction(walk);
