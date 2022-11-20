@@ -1,5 +1,5 @@
 # Code.Jam
-Hello! Welcome to the repo of our CodeJam project.
+Hello! Welcome to the repo of our CodeJam project. :truck:
 
 All our information about the project is in the presentation power point!
 
