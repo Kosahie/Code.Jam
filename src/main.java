@@ -31,7 +31,7 @@ public class main {
 
 		// setup: create a testing hard coded story
 		Story cave = new Story();
-		cave.setTitle("The hobbit.");
+		cave.setTitle("The Hobbit.");
 
 		// make starting nodes
 		Node start = new Node();
@@ -90,7 +90,7 @@ public class main {
 				+ "It comes out first and follows after,\r\n"
 				+ "Ends life, kills laughter.\"");
 
-		// make and add actions
+		// make actions
 		Action look = new Action("look around", surroundings, Arrays.asList("look"));
 		Action feel = new Action("wave around your arms", ring, Arrays.asList("wave arms","wave my arms","wave"));
 		Action walk = new Action("walk forward", water,Arrays.asList("walk","go forward"));
@@ -106,9 +106,12 @@ public class main {
 		Action followWithRing = new Action("follow the breeze", escape,Arrays.asList("follow","follow breeze","breeze"));
 		Action insult = new Action("insult him", death,Arrays.asList("insult"));
 		Action stall = new Action("stall", stalling,Arrays.asList("stall him","stall it"));
-		Action correct1 = new Action("answer right", answered2,Arrays.asList("right","correct"));
-		Action correct2 = new Action("answer right", answered3,Arrays.asList("right","correct"));
-		Action correct3 = new Action("answer right", death,Arrays.asList("right","correct"));
+		Action correct1 = new Action("answer right", answered1,Arrays.asList("mountain","mountains","the mountains"));
+		correct1.removeIdentifier("answer right");
+		Action correct2 = new Action("answer right", answered2,Arrays.asList("wind","the wind"));
+		correct1.removeIdentifier("answer right");
+		Action correct3 = new Action("answer right", answered3,Arrays.asList("dark","the dark"));
+		correct1.removeIdentifier("answer right");
 		Action ask1 = new Action("ask a riddle", riddle2,Arrays.asList("ask","riddle"));
 		Action ask2 = new Action("ask a riddle", riddle3,Arrays.asList("ask","riddle"));
 		Action ask3 = new Action("ask a riddle", death,Arrays.asList("ask","riddle"));
@@ -116,6 +119,8 @@ public class main {
 		Action runNoRing = new Action("run away", falseEscape,Arrays.asList("run","flee"));
 		Action runGolumnClose = new Action("run away", death,Arrays.asList("run","flee"));
 		Action runWithRing = new Action("run away", escape,Arrays.asList("run","flee"));
+		
+		// assign actions
 		start.addAction(look);
 		start.addAction(feel);
 		start.addAction(walk);

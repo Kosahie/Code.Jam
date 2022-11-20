@@ -18,6 +18,10 @@ public class Action {
 	public void addIdentifier(String id) {
 		this.identifiers.add(id);
 	}
+	
+	public void removeIdentifier(String id) {
+		this.identifiers.remove(id);
+	}
 
 	public Action(String body, Node node) {
         this.body = body;
