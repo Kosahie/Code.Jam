@@ -24,9 +24,9 @@ public class Action {
     public void setNode(Node node) {
         this.node = node;
     }
-
+    
     @Override
-	public boolean equals(Object possibleAction) {
-		return this.body.equals(possibleAction);
-	}
+    public String toString() {
+    	return this.getBody();
+    }
 }
